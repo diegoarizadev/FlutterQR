@@ -5,9 +5,10 @@ class NavigationBarCustom extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final currentIndex = 0;
     return BottomNavigationBar(
       elevation: 0,
-      currentIndex: 0,
+      currentIndex: currentIndex,
       items: <BottomNavigationBarItem>[
         //Se define el tipo de los items -> BottomNavigationBarItem, por lo minimo se deben enviar 2 opciones.
         BottomNavigationBarItem(
