@@ -13,9 +13,6 @@ class NavigationBarCustom extends StatelessWidget {
         BottomNavigationBarItem(
           icon: Icon(Icons.map),
           label: 'Mapa',
-          activeIcon: Icon(
-            Icons.map,
-          ),
         ),
         BottomNavigationBarItem(
           icon: Icon(
@@ -24,9 +21,6 @@ class NavigationBarCustom extends StatelessWidget {
           label: 'Direcciones',
         ),
       ],
-      selectedItemColor: Colors.orange,
-      selectedLabelStyle:
-          TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
     );
   }
 }

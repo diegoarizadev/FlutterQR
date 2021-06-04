@@ -21,7 +21,6 @@ class HomePageScreen extends StatelessWidget {
             ),
           )
         ],
-        backgroundColor: Colors.orange,
       ),
       body: Center(
         child: Text('HomePage'),

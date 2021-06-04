@@ -11,7 +11,6 @@ class FloatingActionCustom extends StatelessWidget {
         Icons.filter_center_focus,
         color: Colors.black,
       ),
-      backgroundColor: Colors.orange,
     );
   }
 }
