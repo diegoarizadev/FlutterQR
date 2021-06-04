@@ -45,7 +45,6 @@ class _HomePageBody extends StatelessWidget {
         return MapPageScreen();
       case 1:
         return HistoryDirectionsPage();
-        break;
       default:
         return MapPageScreen();
     }
