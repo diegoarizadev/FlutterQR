@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:qrreader/pages/history_directions_page.dart';
 import 'package:qrreader/pages/map_page.dart';
+import 'package:qrreader/providers/db_provider.dart';
 import 'package:qrreader/providers/ui_provider.dart';
 import 'package:qrreader/widgets/navigatorbar_custom.dart';
 import 'package:qrreader/widgets/scan_custom.dart';
@@ -44,6 +45,8 @@ class _HomePageBody extends StatelessWidget {
     //Obtener el Selected menu opt
     final uiProvider = Provider.of<UiProvider>(context);
     final currentIndex = uiProvider.selectedMenuOpt;
+
+    DBProvider.db.database;
 
 //Cambiar para mostrar la pagina.
     switch (currentIndex) {
