@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:qrreader/pages/home_page.dart';
 import 'package:qrreader/pages/map_page.dart';
+import 'package:qrreader/providers/scan_list_provider.dart';
 import 'package:qrreader/providers/ui_provider.dart';
 
 void main() => runApp(MyApp());
@@ -12,9 +13,10 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-            //se Ejecutara cuando no hay una instancia ninguna estancia del provider
-            create: (_) => UiProvider()),
-      ],
+            create: (_) =>
+                UiProvider()), //se Ejecutara cuando no hay una instancia ninguna estancia del provider
+        ChangeNotifierProvider(create: (_) => ScanListProvider()),
+      ], //El context de la App va a contener las instancias de los provider para utilizar en cualquier parte.
       child: MaterialApp(
         theme: ThemeData(
           //ThemeData.dark(),
