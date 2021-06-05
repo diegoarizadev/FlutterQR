@@ -10,6 +10,10 @@ import 'package:qrreader/widgets/scan_custom.dart';
 class HomePageScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final scanListProvider = Provider.of<ScanListProvider>(
+      context, //Busca en el arbol de widget el provider ScanListProvider
+    ); //Cuando colocar el Listener en false o true, dentro de un build va en true, o sea no se coloca
+
     return Scaffold(
       appBar: AppBar(
         elevation: 0, //elimina la sombra
@@ -19,7 +23,10 @@ class HomePageScreen extends StatelessWidget {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              scanListProvider.deleteAll();
+              print('Borrar');
+            },
             icon: Icon(
               Icons.delete_forever,
               color: Colors.black,
