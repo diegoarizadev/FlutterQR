@@ -46,11 +46,13 @@ class _HomePageBody extends StatelessWidget {
     final uiProvider = Provider.of<UiProvider>(context);
     final currentIndex = uiProvider.selectedMenuOpt;
 
-    DBProvider.db
-        .getScansByID(7)
-        .then((scan) => print(scan!.valor)); //Recuperar un registro.
+    // DBProvider.db
+    //     .getScansByID(7)
+    //     .then((scan) => print(scan!.valor)); //Recuperar un registro.
 
-    DBProvider.db.getAllScans().then((print)); //Recuperar un registro.
+    // DBProvider.db.getAllScans().then((print)); //Recuperar un registro.
+
+    //DBProvider.db.deleteAllScan();
 
 //Cambiar para mostrar la pagina.
     switch (currentIndex) {
