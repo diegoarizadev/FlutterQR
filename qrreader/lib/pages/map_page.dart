@@ -12,20 +12,48 @@ class MapPageScreen extends StatelessWidget {
     final scans = scanListProvider.scans;
     return ListView.builder(
         itemCount: scans.length,
-        itemBuilder: (_, i) => ListTile(
-              leading: Icon(
-                Icons.map,
-                color: Theme.of(context).primaryColor,
+        itemBuilder: (_, i) => Dismissible(
+              key: Key(scans[i]
+                  .id
+                  .toString()), //Esta funcion genera automaticamente un key
+              background: Container(
+                padding: EdgeInsets.all(20),
+                color: Colors.red,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text(
+                      'Eliminar',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, color: Colors.white),
+                    ),
+                    Icon(
+                      Icons.delete_forever,
+                      size: 30,
+                      color: Colors.white,
+                    ),
+                  ],
+                ),
               ),
-              title: Text(scans[i].valor),
-              subtitle: Text(scans[i].id.toString()),
-              trailing: Icon(
-                Icons.keyboard_arrow_right,
-                color: Colors.black,
+              onDismissed: (DismissDirection direction) {
+                Provider.of<ScanListProvider>(context, listen: false)
+                    .deleteForId(scans[i].id!);
+              }, //impactar la base de datos.
+              child: ListTile(
+                leading: Icon(
+                  Icons.map,
+                  color: Theme.of(context).primaryColor,
+                ),
+                title: Text(scans[i].valor),
+                subtitle: Text(scans[i].id.toString()),
+                trailing: Icon(
+                  Icons.keyboard_arrow_right,
+                  color: Colors.black,
+                ),
+                onTap: () {
+                  print(scans[i].id);
+                },
               ),
-              onTap: () {
-                print(scans[i].id);
-              },
             ));
   }
 }
