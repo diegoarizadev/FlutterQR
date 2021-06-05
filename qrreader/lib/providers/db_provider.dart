@@ -2,6 +2,8 @@
 import 'dart:io';
 
 import 'package:path_provider/path_provider.dart';
+import 'package:qrreader/models/scan_model.dart';
+export 'package:qrreader/models/scan_model.dart'; //En todo lugar se va a tener un newScan listo.
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
@@ -48,5 +50,30 @@ class DBProvider {
         ''');
       },
     );
+  }
+
+  newScanRawSQL(ScanModel newScan) async {
+    final id = newScan.id;
+    final tipo = newScan.id;
+    final valor = newScan.id;
+
+    //Referencia a la BD
+    final db = await database; //Verifica la base de datos
+
+    final res = await db!.rawInsert('''
+    IINSERT INTO Scans (id, tipo, valor) VALUES ($id, '$tipo', '$valor')
+    ''');
+
+    return res;
+  }
+
+  Future<int> newScan(ScanModel newScan) async {
+    //Referencia a la BD
+    final db = await database; //Verifica la base de datos
+    final res = await db!.insert(
+        'Scans',
+        newScan
+            .toJson()); //toma la instancia de la clase ScanModel, la cual tiene el MAP que esta construiod en la clase.
+    return res;
   }
 }
