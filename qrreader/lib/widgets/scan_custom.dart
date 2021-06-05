@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:qrreader/providers/scan_list_provider.dart';
 
 class FloatingActionCustom extends StatelessWidget {
   const FloatingActionCustom({Key? key}) : super(key: key);
@@ -11,7 +13,13 @@ class FloatingActionCustom extends StatelessWidget {
 
         String barcodeScanRes = 'https://eltiempo.com';
 
-        print(barcodeScanRes);
+        final scanListProvider = Provider.of<ScanListProvider>(
+            context, //Busca en el arbol de widget el provider ScanListProvider
+            listen:
+                false); //No se requiere que se redibuje, por lo tanto se envia el parametro listen en false.
+
+        scanListProvider.newScan(barcodeScanRes);
+        scanListProvider.newScan('geo:15.33,15.34');
       },
       child: Icon(
         Icons.filter_center_focus,
