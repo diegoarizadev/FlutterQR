@@ -71,9 +71,22 @@ class DBProvider {
     //Referencia a la BD
     final db = await database; //Verifica la base de datos
     final res = await db!.insert(
+        //Este tipo de instrucciones o funciones evitan la inyeccion de SQL
         'Scans',
         newScan
             .toJson()); //toma la instancia de la clase ScanModel, la cual tiene el MAP que esta construiod en la clase.
     return res;
+  }
+
+  Future<ScanModel?> getScanByID(int i) async {
+    final db = await database;
+    final res = await db!.query('Scans',
+        where: 'id = ?',
+        whereArgs: [i]); //where: 'id = ?' el ? hace refenrecia al whereArgs:
+
+    return res.isNotEmpty //No esta vacio
+        ? ScanModel.fromJson(
+            res.first) //Si no esta vacio, Se retorna el primer objeto.
+        : null; //Si esta vacio, se retorna un null
   }
 }
