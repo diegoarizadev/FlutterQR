@@ -67,7 +67,7 @@ class DBProvider {
     return res;
   }
 
-  Future<int> newScan(ScanModel newScan) async {
+  Future<int> newScans(ScanModel newScan) async {
     //Referencia a la BD
     final db = await database; //Verifica la base de datos
     final res = await db!.insert(
@@ -78,7 +78,7 @@ class DBProvider {
     return res;
   }
 
-  Future<ScanModel?> getScanByID(int i) async {
+  Future<ScanModel?> getScansByID(int i) async {
     final db = await database;
     final res = await db!.query('Scans',
         where: 'id = ?',
@@ -88,5 +88,28 @@ class DBProvider {
         ? ScanModel.fromJson(
             res.first) //Si no esta vacio, Se retorna el primer objeto.
         : null; //Si esta vacio, se retorna un null
+  }
+
+  Future<List<ScanModel>?> getAllScans() async {
+    final db = await database;
+    final res = await db!.query(
+        'Scans'); //no se utiliza la clausula Where ya que se van a recueprar todos los registros.
+
+    return res.isNotEmpty //No esta vacio
+        ? res.map((s) => ScanModel.fromJson(s)).toList()
+        : []; //Si esta vacio, se retorna un null
+  }
+
+  Future<List<ScanModel>?> getScansForType(String type) async {
+    final db = await database;
+    final res = await db!.rawQuery('''
+    SELECT * 
+      FROM Scans 
+    WHERE tipo = '$type'
+    ''');
+
+    return res.isNotEmpty //No esta vacio
+        ? res.map((s) => ScanModel.fromJson(s)).toList()
+        : []; //Si esta vacio, se retorna un null
   }
 }
