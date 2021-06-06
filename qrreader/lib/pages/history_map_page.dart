@@ -37,6 +37,20 @@ class _HistoryMapPageState extends State<HistoryMapPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Mapa'),
+        actions: [
+          IconButton(
+            onPressed: () async {
+              final GoogleMapController controller = await _controller.future;
+              controller.animateCamera(CameraUpdate.newCameraPosition(
+                  CameraPosition(
+                      target: scan.getLatLng(),
+                      zoom: 17.5,
+                      tilt: 50 //Inclinacion de la camara
+                      )));
+            },
+            icon: Icon(Icons.share_location_sharp),
+          ),
+        ],
       ),
       body: GoogleMap(
         mapType: MapType.normal,
