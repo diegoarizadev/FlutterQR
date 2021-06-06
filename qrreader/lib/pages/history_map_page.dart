@@ -24,12 +24,23 @@ class _HistoryMapPageState extends State<HistoryMapPage> {
         tilt: 50 //Inclinacion de la camara
         );
 
+    //Marcadores
+
+    Set<Marker> markers = new Set<Marker>();
+    markers.add(
+      new Marker(
+        markerId: MarkerId('geo-location'),
+        position: scan.getLatLng(),
+      ),
+    );
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Mapa'),
       ),
       body: GoogleMap(
         mapType: MapType.normal,
+        markers: markers, //Marcador en el mapa
         initialCameraPosition: _kGooglePlex,
         onMapCreated: (GoogleMapController controller) {
           _controller.complete(controller);
