@@ -15,20 +15,21 @@ class _HistoryMapPageState extends State<HistoryMapPage> {
 
   @override
   Widget build(BuildContext context) {
-    final CameraPosition _kGooglePlex = CameraPosition(
-      target: LatLng(37.42796133580664, -122.085749655962),
-      zoom: 14.4746,
-    );
-
     final ScanModel scan = ModalRoute.of(context)!.settings.arguments
         as ScanModel; //Recupera el valor enviado por el PushName. SE DEBE CASTERA PARA EVITA UN ERROR.
+
+    final CameraPosition _kGooglePlex = CameraPosition(
+        target: scan.getLatLng(), //Obtiene latitud y longitud
+        zoom: 17.5,
+        tilt: 50 //Inclinacion de la camara
+        );
 
     return Scaffold(
       appBar: AppBar(
         title: Text('Mapa'),
       ),
       body: GoogleMap(
-        mapType: MapType.hybrid,
+        mapType: MapType.normal,
         initialCameraPosition: _kGooglePlex,
         onMapCreated: (GoogleMapController controller) {
           _controller.complete(controller);
