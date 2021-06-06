@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:qrreader/pages/history_map_page.dart';
 import 'package:qrreader/pages/home_page.dart';
 import 'package:qrreader/pages/map_page.dart';
 import 'package:qrreader/providers/scan_list_provider.dart';
@@ -38,7 +39,8 @@ class MyApp extends StatelessWidget {
         initialRoute: 'home',
         routes: {
           'home': (_) => HomePageScreen(),
-          'Map': (_) => MapPageScreen()
+          'Map': (_) => MapPageScreen(),
+          'HistoryMap': (_) => HistoryMapPage(),
         },
       ),
     );

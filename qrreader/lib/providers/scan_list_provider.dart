@@ -8,7 +8,7 @@ class ScanListProvider extends ChangeNotifier {
 //identificar la opcion seleccionado.
   String typeSelection = 'http';
 
-  newScan(String value) async {
+  Future<ScanModel> newScan(String value) async {
     final newScan = new ScanModel(valor: value);
     final id = await DBProvider.db
         .newScans(newScan); //inserta el modelo en l;a base de datos.
@@ -17,6 +17,8 @@ class ScanListProvider extends ChangeNotifier {
       this.scans.add(newScan);
       notifyListeners(); //Notifica el cambio.
     }
+
+    return newScan;
   }
 
   loadScans() async {
