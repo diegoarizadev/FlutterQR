@@ -13,6 +13,8 @@ class _HistoryMapPageState extends State<HistoryMapPage> {
   Completer<GoogleMapController> _controller =
       Completer(); //Parecido a un future
 
+  MapType mapType = MapType.normal;
+
   @override
   Widget build(BuildContext context) {
     final ScanModel scan = ModalRoute.of(context)!.settings.arguments
@@ -53,11 +55,22 @@ class _HistoryMapPageState extends State<HistoryMapPage> {
         ],
       ),
       body: GoogleMap(
-        mapType: MapType.normal,
+        mapType: mapType,
         markers: markers, //Marcador en el mapa
         initialCameraPosition: _kGooglePlex,
         onMapCreated: (GoogleMapController controller) {
           _controller.complete(controller);
+        },
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.layers),
+        onPressed: () {
+          if (mapType == MapType.normal) {
+            mapType = MapType.satellite;
+          } else {
+            mapType = MapType.normal;
+          }
+          setState(() {}); // Para redibujar el widget
         },
       ),
     );
