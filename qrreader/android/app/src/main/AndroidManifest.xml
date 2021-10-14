@@ -1,7 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.qrreader">
+    package="com.diegoarizadev.qrreader">
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
+<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> 
    <application
-        android:label="qrreader"
+        android:label="QrReader"
         android:icon="@mipmap/launcher_icon">
     <meta-data android:name="com.google.android.geo.API_KEY"
                android:value="AIzaSyCxdG_7Fu9csD8BuZW4BIg4ZSkdBEpR8ZI"/>
